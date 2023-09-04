@@ -8,7 +8,7 @@ const comprarMaderas = () => {
     let seguirComprando = true;
 
     do {
-        madera = prompt('Venta de pino, cedro y roble ¿Qué madera te gustaria comprar?');
+        madera = prompt('Venta de pino, cedro y roble ¿Qué madera te gustaria comprar?').toLowerCase();
         cantidad = Number(prompt('¿Cuantos metros queres comprar?'));
 
         console.log(madera);
