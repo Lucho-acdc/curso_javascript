@@ -1,0 +1,72 @@
+.containerHeader {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.imgProductos {
+    width: 150px;
+    height: 150px;
+    object-fit: contain;
+    margin-top: 1rem;
+}
+
+.colorBoton {
+    color: white;
+    background-color: #85bb65;
+}
+
+.colorBoton:hover {
+    background-color: green;
+    color: white;
+}
+
+.colorBotonVacios {
+    color: rgb(0, 0, 0);
+    background-color: #b6b6b68a;
+}
+
+.colorBotonVacios:hover {
+    background-color: rgb(0, 0, 0);
+    color: white;
+}
+
+.card {
+    display: flex;
+    align-items: center;
+    margin: 0.5rem;
+}
+
+.tituloCard, .parrafoCard, .tituloCarrito, .parrafoCarrito, .cantidadCarrito  {
+    text-align: center;
+}
+
+.cardCarrito {
+    width: 200px; 
+    height: 250px; 
+    margin: 10px; 
+
+}
+
+.imgProductosCarrito {
+    width: 50px;
+    height: 50px;
+    object-fit: contain;
+    margin-top: 1rem;
+}
+
+.solapaCarrito{
+    position: fixed;
+    top: 0;
+    right: 0;
+    text-align: center;
+    background-color: white;
+    border-left: 1px solid #ccc;
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.2);
+    z-index: 1; 
+    display: none;
+    width: 30vw;
+    max-height: 85vh;
+    overflow-y: auto;
+}
+

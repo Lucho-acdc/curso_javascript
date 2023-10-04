@@ -1,175 +1,178 @@
-function obtenerSoloNumeros() {
-    let cantidad = NaN;
-    while (isNaN(cantidad)) {
-        cantidad = Number(prompt('¿Cuántos metros quieres comprar?'));
-        if (isNaN(cantidad)) {
-            alert('Por favor, ingresa un número válido para la cantidad.');
-        }
-    }
-    return cantidad;
-}
+// Cosas que puedo agregar
+// Boton de finalizar compra.
+// Descuento por cantidad.
+// Formas de pago.
 
-function obtenerTipoDeCompra() {
-    return prompt('Venta de pino, cedro y roble en liston y tablas ¿En qué formato te gustaría comprar?').toLowerCase();
-}
 
-function verificarTipoDeCompra() {
-    let tipoDeCompra = obtenerTipoDeCompra();
-
-    while (tipoDeCompra !== 'liston' && tipoDeCompra !== 'tablas') {
-        alert('No es una opción correcta la ingresada. Vuelve a ingresar por favor');
-        tipoDeCompra = obtenerTipoDeCompra();
-    }
-
-    return tipoDeCompra;
-}
-
-function comprarMaderas() {
-    const tipoDeCompra = verificarTipoDeCompra();
-
-    if (tipoDeCompra === 'liston') {
-        comprarListones();
-    } else if (tipoDeCompra === 'tablas') {
-        comprarTablas();
+class Producto {
+    constructor(id, nombre, precio, img) {
+        this.id = id;
+        this.nombre = nombre;
+        this.precio = precio;
+        this.img = img;
+        this.cantidad = 1
     }
 }
 
-const aplicarDescuento = (subtotalTotal) => {
-    const descuentoA = 0.90;
-    const descuentoB = 0.75;
+const argentina = new Producto(1, "Argentina", 11000, "./img/argentina.png");
+const brasil = new Producto(2, "Brasil", 10000, "./img/brasil.png");
+const chile = new Producto(3, "Chile", 8000, "./img/chile.png");
+const colombia = new Producto(4, "Colombia", 12000, "./img/colombia.png");
+const descafeinado = new Producto(5, "Descafeinado", 8000, "./img/descafeinado.png");
+const fuerte = new Producto(6, "Fuerte", 10000, "./img/fuerte.png");
+const guatemala = new Producto(7, "Guatemala", 12000, "./img/guatemala.png");
+const india = new Producto(8, "India", 9000, "./img/india.png");
+const peru = new Producto(9, "Peru", 8000, "./img/peru.png");
+const suave = new Producto(10, "Suave", 7000, "./img/suave.png");
 
-    if (subtotalTotal >= 150000) {
-        return subtotalTotal * descuentoB;
-    } else if (subtotalTotal >= 100000) {
-        return subtotalTotal * descuentoA;
-    } else {
-        return subtotalTotal;
-    }
+const productos = [argentina, brasil, chile, colombia, descafeinado, fuerte, guatemala, india, peru, suave];
+
+let carrito = [];
+
+
+if(localStorage.getItem("carrito")) {
+    carrito = JSON.parse(localStorage.getItem("carrito"));
 }
 
-const mostrarDetalleDeCompra = (precioFinal) => {
-    alert('El precio final de su compra es: $' + precioFinal)
-}
+const contenedorProductos = document.getElementById("contenedorProductos");
 
+// Productos en stock.
 
-alert('Bienvenidos a la Maderix');
+const mostrarProductos = () => {
+    productos.forEach( producto => {
+        const card = document.createElement("div");
+        card.classList.add("col-xl-3", "col-md-6", "col-sm-12");
+        card.innerHTML = `
+                <div class = "card">
+                    <img src = "${producto.img}" class = "card-img-tom imgProductos" alt = "${producto.nombre}">
+                    <div class = "card-body">
+                    <h2 class = "tituloCard">${producto.nombre}</h2>
+                    <p class = "parrafoCard">$${producto.precio}</p>
+                    <button class = "btn colorBoton" id = "boton${producto.id}">Agregar al carrito</button>
+                    </div>
+                    </div>`
 
-// Esta parte de los listones lo agregue para poder seguir con el mismo proyecto y agregar lo que se pedia para esta preentrega, pero me complico mas y creo que haciendo lo que hice al final iba a cumplir igual. Pero bueno me sirvió para practicar.
+        contenedorProductos.appendChild(card);
 
-function comprarListones() {
-
-    // esta función la saque practicando en freeCodeCamp
-    function buscarPropiedad(liston, precio) {
-        for (let i = 0; i < listones.length; i++) {
-            if (listones[i].tipo === liston && listones[i].hasOwnProperty(precio)) {
-                return listones[i][precio];
-            }
-        }
-        return "Algo de lo que ingresaste no es correcto";
-    }    
-
-    let listonTipo = '';
-    let cantidad = 0;
-    const listones = [
-        {tipo: 'pino', precio: 1500,},
-        {tipo: 'cedro', precio: 2000,},
-        {tipo: 'roble', precio: 2500,},
-    ];
-    let subtotalListones = 0;
-    let precio = 0;
-    let seguirComprandoListones = true;
-
-    do {
-        listonTipo = prompt('Venta de pino, cedro y roble ¿Qué liston te gustaría comprar?').toLowerCase();
+        // Agregar producto al carrito
         
-        if (listonTipo === 'pino' || listonTipo === 'cedro' || listonTipo === 'roble') {
-            cantidad = obtenerSoloNumeros();
-            precio = buscarPropiedad(listonTipo, 'precio');
-            
-            if (precio !== "Algo de lo que ingresaste no es correcto") {
-                let subtotalCompra = precio * cantidad;
-                subtotalListones += subtotalCompra;
-            alert('Has comprado ' + cantidad + ' metros de ' + listonTipo + '. El subtotal es: $ '+ subtotalListones);
-        } else {
-        alert(precio);
-        }
-    } seguirComprandoListones = confirm('¿Quiere seguir agregando algun liston más?');
-} while (seguirComprandoListones);
-return subtotalListones;
+        const boton = document.getElementById(`boton${producto.id}`);
+        boton.addEventListener("click", () => {
+            agregarAlCarrito(producto.id);
+        })
+    })
 }
 
-function comprarTablas() {
-    let tablas = '';
-    let cantidad = 0;
-    let precio = 0;
-    let subtotalTablas = 0;
-    let seguirComprandoTablas = true;
+mostrarProductos();
 
-    do {
-        tablas = prompt('Venta de pino, cedro y roble ¿Qué tabla te gustaria comprar?').toLowerCase();
-        cantidad = obtenerSoloNumeros();
-
-        switch (tablas) {
-            case 'pino':
-                precio = 5000;
-                alert ('El precio del pino por metro es: $'+precio);
-                break;
-            
-            case 'cedro':
-                precio = 7000;
-                alert ('El precio del cedro por metro es: $'+precio);
-                break;
-            
-            case 'roble':
-                precio = 10000;
-                alert ('El precio del roble por metro es: $'+precio);
-                break;
-
-            default:
-                alert('Algo de lo que ingresaste no es correcto')
-                precio = 0;
-                cantidad = 0;
-        }
-    let subtotalCompra = precio * cantidad;
-    subtotalTablas += subtotalCompra;
-    seguirComprandoTablas = confirm('¿Quiere seguir agregando alguna tabla más?')
-
-} while (seguirComprandoTablas);
-
-return subtotalTablas;
-}
-
-const subtotales = {
-    listones: [],
-    tablas: [],
-};
-
-function seguirComprandoMaderas() {
-    let seguirComprando = true;
-
-    while (seguirComprando) {
-        const tipoDeCompra = verificarTipoDeCompra();
-
-        if (tipoDeCompra === 'liston') {
-            const subtotalListones = comprarListones();
-            subtotales.listones.push(subtotalListones);
-            mostrarDetalleDeCompra(subtotalListones);
-        } else if (tipoDeCompra === 'tablas') {
-            const subtotalTablas = comprarTablas();
-            subtotales.tablas.push(subtotalTablas);
-            mostrarDetalleDeCompra(subtotalTablas);
-        }
-
-        seguirComprando = confirm('¿Quiere seguir agregando algo más?');
+const agregarAlCarrito = (id) => {
+    const productoEnCarrito = carrito.find(producto => producto.id === id);
+    if (productoEnCarrito) {
+        productoEnCarrito.cantidad++;
+    } else {
+        const producto = productos.find(producto => producto.id === id);
+        carrito.push(producto);
     }
+    calcularTotal();
+
+    localStorage.setItem("carrito", JSON.stringify(carrito));
+
+    mostrarCarrito();
 }
 
-seguirComprandoMaderas();
+// Mostrar el carrito de compras
 
-const subtotalListonesTotal = subtotales.listones.reduce((acc, val) => acc + val, 0);
-const subtotalTablasTotal = subtotales.tablas.reduce((acc, val) => acc + val, 0);
-const subtotalTotal = subtotalListonesTotal + subtotalTablasTotal;
+const verCarrito = document.getElementById("verCarrito");
+const carritoFlotante = document.getElementById("carritoFlotante");
+const cerrarCarritoFlotante = document.getElementById("cerrarCarritoFlotante");
 
-const precioFinal = aplicarDescuento(subtotalTotal);
+verCarrito.addEventListener("click", () => {
+    carritoFlotante.style.display = "block";
+});
 
-mostrarDetalleDeCompra(precioFinal);
+cerrarCarritoFlotante.addEventListener("click", () => {
+    carritoFlotante.style.display = "none";
+});
+
+verCarrito.addEventListener("click", () => {
+    mostrarCarrito();
+})
+
+const mostrarCarrito = () => {
+    contenedorCarrito.innerHTML = "";
+    carrito.forEach(producto => {
+        const card = document.createElement("div");
+        card.classList.add("cardCarrito");
+        card.innerHTML = `
+            <div class = "card">
+                <img src ="${producto.img}" class = "card-img-tom imgProductosCarrito alt = "${producto.nombre}>
+                <div class = "card-body">
+                    <h6 class = "tituloCarrito">${producto.nombre}</h2>
+                    <p class = "parrafoCarrito">$${producto.precio}</p>
+                    <p class = "cantidadCarrito">${producto.cantidad}</p>
+                    <button class="btn colorBoton botonCarrito" id="agregarboton${producto.id}"><span class="botonCarritoSpan">+</span></button>
+                    <button class="btn colorBoton botonCarrito" id="eliminarboton${producto.id}"><span class="botonCarritoSpan">-</span></button>
+                    </div>
+                    </div>`
+
+        contenedorCarrito.appendChild(card);
+
+        // Agregar producto al carrito
+
+        const botonAgregar = document.getElementById(`agregarboton${producto.id}`);
+        botonAgregar.addEventListener("click", () => {
+            agregarAlCarrito(producto.id);
+            mostrarCarrito();
+        })
+
+        // Eliminar producto del carrito
+
+        const botonEliminar = document.getElementById(`eliminarboton${producto.id}`);
+        botonEliminar.addEventListener("click", () => {
+            eliminarDelCarrito(producto.id);
+            mostrarCarrito();
+        })
+    })
+}
+
+// Funcion eliminarDelCarrito
+
+const eliminarDelCarrito = (id) => {
+    const producto = carrito.find (producto => producto.id === id);
+    if (producto && producto.cantidad > 1) {
+        producto.cantidad--;
+    } else {
+        const indice = carrito.indexOf(producto);
+        carrito.splice(indice, 1); 
+    }
+    mostrarCarrito();
+    calcularTotal();
+
+    localStorage.setItem("carrito", JSON.stringify(carrito));
+}
+
+// Funcion para vaciar el carrito de compras.
+
+const vaciarCarrito = document.getElementById("vaciarCarrito");
+
+vaciarCarrito.addEventListener("click", () => {
+    vaciarTodoElCarrito();
+})
+
+const vaciarTodoElCarrito = () => {
+    carrito = [];
+    mostrarCarrito();
+    calcularTotal();
+
+    localStorage.clear();
+}
+
+const total = document.getElementById("total");
+
+const calcularTotal= () => {
+    let totalCompra = 0;
+    carrito.forEach(producto => {
+        totalCompra += producto.precio * producto.cantidad
+    })
+    total.innerHTML = `$${totalCompra}`
+}
