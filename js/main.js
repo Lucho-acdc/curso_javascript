@@ -73,7 +73,9 @@ const agregarAlCarrito = (id) => {
         const producto = productos.find(producto => producto.id === id);
         carrito.push(producto);
     }
+
     calcularTotal();
+    actualizarItems();
 
     localStorage.setItem("carrito", JSON.stringify(carrito));
 
@@ -147,6 +149,7 @@ const eliminarDelCarrito = (id) => {
     }
     mostrarCarrito();
     calcularTotal();
+    actualizarItems();
 
     localStorage.setItem("carrito", JSON.stringify(carrito));
 }
@@ -176,3 +179,15 @@ const calcularTotal= () => {
     })
     total.innerHTML = `$${totalCompra}`
 }
+
+const carritoItems = document.getElementById("carritoItems");
+
+// Función para actualizar el indicador
+const actualizarItems = () => {
+    // Calcula la cantidad total de productos en el carrito (puedes personalizar esto)
+    const cantidadTotal = carrito.reduce((total, producto) => total + producto.cantidad, 0);
+    
+    carritoItems.textContent = ` (${cantidadTotal})`;
+};
+
+actualizarItems();

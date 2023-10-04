@@ -13,11 +13,14 @@
         <div class="tituloHeader">
             <h1 class="text-center">Capsulas Nespresso</h1>
         </div>
-        <button class="btn colorBoton" id="verCarrito"><i class="bi bi-cart2"></i> Ver carrito</button>
+        <button class="btn colorBoton" id="verCarrito">
+            <i class="bi bi-cart2"></i> Ver carrito
+            <span id="carritoItems"></span>
+        </button>
         <div class="solapaCarrito" id="carritoFlotante">
             <h4><i class="bi bi-cart2"></i> Carrito de compras</h4>
             <div id="contenedorCarrito" class="row"></div> 
-            <h6>El total de la compra es: <span id="total"></span></h6>
+            <h4>El total de la compra es: <span id="total"></span></h4>
             <button class="btn colorBotonVacios" id="vaciarCarrito">Vaciar carrito</button>
             <button class="btn colorBotonVacios" id="cerrarCarritoFlotante"><i class="bi bi-x-lg"></i></button>
         </div>
