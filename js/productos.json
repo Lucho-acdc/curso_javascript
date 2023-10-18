@@ -35,7 +35,7 @@
     {
         "id": "4",
         "nombre" : "Colombia",
-        "img" : "./img/Colombia.png",
+        "img" : "./img/colombia.png",
         "cantidad" : "1",
         "categoria" : {
             "id": "cafe",
