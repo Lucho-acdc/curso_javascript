@@ -1,0 +1,157 @@
+[
+    {
+        "id": "1",
+        "nombre" : "Argentina",
+        "img" : "./img/argentina.png",
+        "cantidad" : "1",
+        "categoria" : {
+            "id": "cafe",
+            "nombre": "fuerte"
+        },
+        "precio" : 11000
+    },
+    {
+        "id": "2",
+        "nombre" : "Brasil",
+        "img" : "./img/brasil.png",
+        "cantidad" : "1",
+        "categoria" : {
+            "id": "cafe",
+            "nombre": "fuerte"
+        },
+        "precio" : 10000
+    },
+    {
+        "id": "3",
+        "nombre" : "Chile",
+        "img" : "./img/chile.png",
+        "cantidad" : "1",
+        "categoria" : {
+            "id": "cafe",
+            "nombre": "suave"
+        },
+        "precio" : 8000
+    },
+    {
+        "id": "4",
+        "nombre" : "Colombia",
+        "img" : "./img/Colombia.png",
+        "cantidad" : "1",
+        "categoria" : {
+            "id": "cafe",
+            "nombre": "fuerte"
+        },
+        "precio" : 12000
+    },
+    {
+        "id": "5",
+        "nombre" : "Descafeinado",
+        "img" : "./img/descafeinado.png",
+        "cantidad" : "1",
+        "categoria" : {
+            "id": "cafe",
+            "nombre": "suave"
+        },
+        "precio" : 8000
+    },
+    {
+        "id": "6",
+        "nombre" : "Fuerte",
+        "img" : "./img/fuerte.png",
+        "cantidad" : "1",
+        "categoria" : {
+            "id": "cafe",
+            "nombre": "fuerte"
+        },
+        "precio" : 10000
+    },
+    {
+        "id": "7",
+        "nombre" : "Guatemala",
+        "img" : "./img/guatemala.png",
+        "cantidad" : "1",
+        "categoria" : {
+            "id": "cafe",
+            "nombre": "fuerte"
+        },
+        "precio" : 12000
+    },
+    {
+        "id": "8",
+        "nombre" : "India",
+        "img" : "./img/india.png",
+        "cantidad" : "1",
+        "categoria" : {
+            "id": "cafe",
+            "nombre": "fuerte"
+        },
+        "precio" : 9000
+    },
+    {
+        "id": "9",
+        "nombre" : "Peru",
+        "img" : "./img/peru.png",
+        "cantidad" : "1",
+        "categoria" : {
+            "id": "cafe",
+            "nombre": "suave"
+        },
+        "precio" : 8000
+    },
+    {
+        "id": "10",
+        "nombre" : "Suave",
+        "img" : "./img/suave.png",
+        "cantidad" : "1",
+        "categoria" : {
+            "id": "cafe",
+            "nombre": "suave"
+        },
+        "precio" : 7000
+    },
+    {
+        "id": "11",
+        "nombre" : "Espumador",
+        "img" : "./img/espumador.png",
+        "cantidad" : "1",
+        "categoria" : {
+            "id": "accesorios y otros",
+            "nombre": "espumador"
+        },
+        "precio" : 50000
+    },
+    {
+        "id": "12",
+        "nombre" : "Organizador",
+        "img" : "./img/organizador.png",
+        "cantidad" : "1",
+        "categoria" : {
+            "id": "accesorios y otros",
+            "nombre": "organizador"
+        },
+        "precio" : 25000
+    },
+    {
+        "id": "13",
+        "nombre" : "Vasos por 100u.",
+        "img" : "./img/vasos.png",
+        "cantidad" : "1",
+        "categoria" : {
+            "id": "accesorios y otros",
+            "nombre": "vasos"
+        },
+        "precio" : 5000
+    },
+    {
+        "id": "14",
+        "nombre" : "Tapa por 100u.",
+        "img" : "./img/tapa.png",
+        "cantidad" : "1",
+        "categoria" : {
+            "id": "accesorios y otros",
+            "nombre": "tapa"
+        },
+        "precio" : 500
+    }
+
+]   
